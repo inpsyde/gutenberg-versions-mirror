@@ -147,7 +147,7 @@ class Loader
                     preg_quote($pathName, '~'),
                     preg_quote($version, '~')
                 );
-                
+
                 if (!preg_match($regex, $url, $matches)) {
                     return $url;
                 }

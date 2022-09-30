@@ -44,10 +44,6 @@ function retrieveDownloadUrls(int $versionLimit = 20): array
         $toDownload[] = $version;
     }
 
-    if (!$toDownload) {
-        throw new \Error("\nFailed finding Gutenberg versions to process.");
-    }
-
     return $toDownload;
 }
 
