@@ -9,7 +9,7 @@ themes (for example) require different versions.
     
 ## How this work
 
-Every day, the wp.org API is called in a GitHub Action to find new Gutenberg versions.
+The wp.org API is called regularly in a GitHub Action to find new Gutenberg versions.
 
 If new versions are found, they are saved, each in a separate folder.
 
