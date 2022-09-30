@@ -1,0 +1,32 @@
+{
+    "name": "inpsyde/gutenberg-versions-mirror",
+    "description": "Package that mirrors and provide multiple versions of teh Gutenberg plugin.",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Inpsyde GmbH",
+            "role": "company",
+            "email": "hello@inpsyde.com"
+        }
+    ],
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=7.4",
+        "composer/semver": "^3.3.2"
+    },
+    "require-dev": {
+        "symfony/process": "^5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Inpsyde\\GutenbergVersions\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "files": [
+            "./.github/scripts/inc/helpers.php",
+            "./.github/scripts/inc/wp-api.php",
+            "./.github/scripts/inc/zip.php"
+        ]
+    }
+}

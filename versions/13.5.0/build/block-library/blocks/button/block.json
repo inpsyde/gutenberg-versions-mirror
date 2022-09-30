@@ -1,0 +1,123 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "core/button",
+	"title": "Button",
+	"category": "design",
+	"parent": [ "core/buttons" ],
+	"description": "Prompt visitors to take action with a button-style link.",
+	"keywords": [ "link" ],
+	"textdomain": "default",
+	"attributes": {
+		"url": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "a",
+			"attribute": "href"
+		},
+		"title": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "a",
+			"attribute": "title"
+		},
+		"text": {
+			"type": "string",
+			"source": "html",
+			"selector": "a"
+		},
+		"linkTarget": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "a",
+			"attribute": "target"
+		},
+		"rel": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "a",
+			"attribute": "rel"
+		},
+		"placeholder": {
+			"type": "string"
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"gradient": {
+			"type": "string"
+		},
+		"width": {
+			"type": "number"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"align": true,
+		"alignWide": false,
+		"color": {
+			"__experimentalSkipSerialization": true,
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		},
+		"typography": {
+			"fontSize": true,
+			"__experimentalFontFamily": true,
+			"__experimentalTextTransform": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		},
+		"reusable": false,
+		"spacing": {
+			"__experimentalSkipSerialization": true,
+			"padding": [ "horizontal", "vertical" ],
+			"__experimentalDefaultControls": {
+				"padding": true
+			}
+		},
+		"__experimentalBorder": {
+			"radius": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"radius": true
+			}
+		},
+		"__experimentalSelector": ".wp-block-button__link",
+		"__experimentalStyle": {
+			"border": {
+				"//": "100% causes an oval, but any explicit but really high value retains the pill shape.",
+				"radius": "9999px"
+			},
+			"color": {
+				"text": "#fff",
+				"background": "#32373c"
+			},
+			"typography": {
+				"fontSize": "1.125em",
+				"textDecoration": "none"
+			},
+			"spacing": {
+				"padding": {
+					"//": "The extra 2px are added to size solids the same as the outline versions.",
+					"top": "calc(0.667em + 2px)",
+					"right": "calc(1.333em + 2px)",
+					"bottom": "calc(0.667em + 2px)",
+					"left": "calc(1.333em + 2px)"
+				}
+			}
+		}
+	},
+	"styles": [
+		{ "name": "fill", "label": "Fill", "isDefault": true },
+		{ "name": "outline", "label": "Outline" }
+	],
+	"editorStyle": "wp-block-button-editor",
+	"style": "wp-block-button"
+}

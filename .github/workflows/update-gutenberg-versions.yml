@@ -1,0 +1,38 @@
+name: Update Gutenberg Versions
+
+on:
+    schedule:
+      - cron: '0 0 * * *'
+    workflow_dispatch:
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    update-gutenberg-versions:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.0
+
+            - name: Install dependencies
+              uses: ramsey/composer-install@v2
+
+            - name: Generate Stubs
+              run: php ./.github/scripts/update-versions.php
+
+            - name: Add, Commit, and Push
+              run: |
+                  git config user.email ${{ secrets.INPSYDE_BOT_EMAIL }}
+                  git config user.name ${{ secrets.INPSYDE_BOT_USER }}
+                  git config --add safe.directory "${GITHUB_WORKSPACE}"
+                  git add ./versions/* --ignore-errors
+                  git add ./versions.txt --ignore-errors
+                  git commit -m "Update Gutenberg versions" || echo 'Nothing to commit'
+                  git push
