@@ -9,17 +9,18 @@ themes (for example) require different versions.
     
 ## How this work
 
-Every day, the Gutenberg repository is pulled in a GitHub Action to find new versions.
+Every day, the wp.org API is called in a GitHub Action to find new Gutenberg versions.
 
-If new versions are found, they are saved in separate folders.
+If new versions are found, they are saved, each in a separate folder.
 
-A utility class shipped allows external code to require Gutenberg in the desired version.
+A utility class shipped with the package allows external code to require Gutenberg desired version.
 
 
 ## How to use it
 
-Require via Composer. Ensure Composer autoload is loaded. **From a MU plugin** require the version
-you need in one of the following ways:
+- Require via Composer.
+- Ensure Composer autoload is loaded.
+-  **From a MU plugin** require the version you need in one of the following ways
 
 ### Specific version
 
@@ -28,14 +29,14 @@ you need in one of the following ways:
 $loadedVersion = Inpsyde\GutenbergVersions\Loader::loadVersion('14.1.0');
 ```
 
-### First found
+### First found among a list
 
 ```php
 /** @var string|null $loadedVersion The exact version loaded or null on failure */
 $loadedVersion = Inpsyde\GutenbergVersions\Loader::loadVersion('14.1.0', '13.2.0');
 ```
 
-### Composer requirement
+### Via Semver requirement
 
 ```php
 /** @var string|null $loadedVersion The exact version loaded or null on failure */
