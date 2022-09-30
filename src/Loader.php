@@ -140,13 +140,20 @@ class Loader
                     return $url;
                 }
 
-                $regex = sprintf('~%s(/versions/%s.+?)$~', static::basePathName(), $version);
+                $pathName = static::basePathName();
+
+                $regex = sprintf(
+                    '~%s(/versions/%s.+?)$~',
+                    preg_quote($pathName, '~'),
+                    preg_quote($version, '~')
+                );
+                
                 if (!preg_match($regex, $url, $matches)) {
                     return $url;
                 }
 
                 static::$filtering = true;
-                $url = plugins_url($matches[1], dirname(__DIR__) . '/file.php');
+                $url = plugins_url($matches[1], WP_PLUGIN_DIR . "/{$pathName}/file.php");
                 static::$filtering = false;
 
                 return $url;
