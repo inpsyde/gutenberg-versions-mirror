@@ -9,6 +9,7 @@ use Composer\Semver\Semver;
 class Loader
 {
     private static bool $loaded = false;
+
     private static bool $filtering = false;
 
     /**
@@ -38,25 +39,37 @@ class Loader
         return static::$loaded;
     }
 
+    public static function matchingVersion(string ...$constraints): ?string
+    {
+        foreach (static::availableVersions() as $version) {
+            foreach ($constraints as $constraint) {
+                if (Semver::satisfies($version, $constraint)) {
+                    return $version;
+                }
+            }
+        }
+
+        return null;
+    }
+
     /**
      * @param string $constraints
      * @return string|null
      */
-    public static function loadMatching(string $constraints): ?string
+    public static function loadMatching(string ...$constraints): ?string
     {
         if (static::isLoaded()) {
             return null;
         }
 
-        foreach (static::availableVersions() as $version) {
-            if (!Semver::satisfies($version, $constraints)) {
-                continue;
-            }
+        $version = static::matchingVersion(...$constraints);
+        if (!$version) {
+            return null;
+        }
 
-            $loaded = static::loadVersion($version);
-            if ($loaded) {
-                return $loaded;
-            }
+        $loaded = static::loadVersion($version);
+        if ($loaded) {
+            return $loaded;
         }
 
         return null;
