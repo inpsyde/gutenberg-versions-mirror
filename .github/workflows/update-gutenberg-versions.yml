@@ -36,3 +36,8 @@ jobs:
                   git add ./versions.txt --ignore-errors
                   git commit -m "Update Gutenberg versions" || echo 'Nothing to commit'
                   git push
+                  
+            - name: Dispatch Repository Event
+              uses: peter-evans/repository-dispatch@v2.1
+              with:
+                event-type: versions-updated

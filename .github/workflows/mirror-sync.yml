@@ -2,6 +2,8 @@ name: Mirror Sync
 
 on:
   push:
+  repository_dispatch:
+    types: [ versions-updated ]
 
 jobs:
   sync-mirror:
