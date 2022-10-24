@@ -38,6 +38,6 @@ jobs:
                   git push
                   
             - name: Dispatch Repository Event
-              uses: peter-evans/repository-dispatch@v2.1
+              uses: peter-evans/repository-dispatch@v2
               with:
                 event-type: versions-updated
