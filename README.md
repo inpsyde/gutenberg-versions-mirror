@@ -1,42 +1,42 @@
 # Gutenberg Versions Mirror
 
-## What
+## What is this?
 
 This package contains a mirror of multiple versions of Gutenberg plugin, in different sub-folders.
 This allows  to contemporarily deploy multiple versions of Gutenberg to WordPress, and let different
 themes (for example) require different versions.
     
     
-## How this work
+## How does it work?
 
 The wp.org API is called regularly in a GitHub Action to find new Gutenberg versions.
 
 If new versions are found, they are saved, each in a separate folder.
 
-A utility class shipped with the package allows external code to require Gutenberg desired version.
+A utility class shipped with the package allows external code to require Gutenberg in the desired version.
 
 
-## How to use it
+## How to use this package
 
 - Require via Composer.
 - Ensure Composer autoload is loaded.
 -  **From a MU plugin** require the version you need in one of the following ways
 
-### Specific version
+### Require a specific version
 
 ```php
 /** @var string|null $loadedVersion The exact version loaded or null on failure */
 $loadedVersion = Inpsyde\GutenbergVersions\Loader::loadVersion('14.1.0');
 ```
 
-### First found among a list
+### Require the first found among a list of possible (accepted) versions
 
 ```php
 /** @var string|null $loadedVersion The exact version loaded or null on failure */
 $loadedVersion = Inpsyde\GutenbergVersions\Loader::loadVersion('14.1.0', '13.2.0');
 ```
 
-### Via Semver requirement
+### Require via Semver requirement
 
 ```php
 /** @var string|null $loadedVersion The exact version loaded or null on failure */
@@ -48,11 +48,11 @@ $loadedVersion = Inpsyde\GutenbergVersions\Loader::loadMatching('>=14.2.0 || ~13
 
 ## URL filtering
 
-Gutenberg internally calls `plugins_url()` with the assumption it is installed under plugins' folder.
+Gutenberg internally calls `plugins_url()` with the assumption it is installed under the plugins' folder.
 
 However, when using this library, Gutenberg files are deeper in the plugin folder tree.
 
-To fix broken URLs resulting from that, when loading a Gutenberg version the package also filters
+To fix broken URLs resulting from that, when loading a Gutenberg version, the package also filters
 `plugins_url()`.
 
 
@@ -64,6 +64,6 @@ will fail.
 
 ## License
 
-Copyright (c) 2023 Inpsyde GmbH Released under GPL v2.0 or later.
+Copyright (c) Inpsyde GmbH 
 
-See [LICENSE](LICENSE) file for more information.
+This software is released under the ["GPL 2.0 or later"](LICENSE) license.
