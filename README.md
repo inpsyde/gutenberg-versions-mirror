@@ -64,6 +64,4 @@ will fail.
 
 ## License
 
-Copyright (c) Inpsyde GmbH 
-
-This software is released under the ["GPL 2.0 or later"](LICENSE) license.
+This repository is a free software, and is released under the terms of the GNU General Public License version 2 or (at your option) any later version. See [LICENSE](./LICENSE) for complete license.
